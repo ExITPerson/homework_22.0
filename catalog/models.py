@@ -1,5 +1,19 @@
 from django.db import models
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Наименование')
+    description = models.TextField(verbose_name='Описание')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = ''
+        verbose_name_plural = ''
+        ordering = ['name']
+
+
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
@@ -14,17 +28,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
-        ordering = ['name']
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.TextField(verbose_name='Описание')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = ''
-        verbose_name_plural = ''
         ordering = ['name']
