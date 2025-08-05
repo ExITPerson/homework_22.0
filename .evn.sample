@@ -1,4 +1,4 @@
-SICRET_KEY=
+SECRET_KEY=
 
 DEBUG=
 
