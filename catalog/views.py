@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Product
 
 
 def home(request):
     return render(request, 'catalog/home.html')
+
 
 def contacts(request):
     if request.method == 'POST':
@@ -12,3 +14,15 @@ def contacts(request):
         message = request.POST.get('message')
         return HttpResponse(f'Спасибо {name}. Сообщение получено.')
     return render(request, 'catalog/contacts.html')
+
+
+def product_details(requests, product_id):
+    product = Product.objects.get(id=product_id)
+    context = {
+        'product_image': product.image,
+        'product_name': product.name,
+        'product_category': product.category,
+        'product_price': product.price,
+        'product_description': product.description
+    }
+    return render(requests, 'catalog/product_details.html', context=context)
