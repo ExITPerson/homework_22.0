@@ -16,7 +16,7 @@ def contacts(request):
     return render(request, 'catalog/contacts.html')
 
 
-def product_details(requests, product_id):
+def product_details(request, product_id):
     product = Product.objects.get(id=product_id)
     context = {
         'product_image': product.image,
@@ -25,4 +25,8 @@ def product_details(requests, product_id):
         'product_price': product.price,
         'product_description': product.description
     }
-    return render(requests, 'catalog/product_details.html', context=context)
+    return render(request, 'catalog/product_details.html', context=context)
+
+
+def index(request):
+    return render(request, 'catalog/base.html')
