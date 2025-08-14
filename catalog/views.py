@@ -28,5 +28,11 @@ def product_details(request, product_id):
     return render(request, 'catalog/product_details.html', context=context)
 
 
+def product_list(request):
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'catalog/home.html', context=context)
+
+
 def index(request):
     return render(request, 'catalog/base.html')
