@@ -1,40 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о продукте</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Магазин</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Главная</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Продукты</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Контакты</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="row mt-5">
-    <font class="text-center h2" face="Impact">Главная</font>
-    <font class="text-center text-secondary h5" face="Arial">Вы находитесь на сайте, предназначенном для
-        продаж</font>
-</div>
+{% extends 'catalog/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+{% include 'catalog/header.html' %}
 <div class="row mt-5">
     {% for product in products %}
     <div class="col-4">
@@ -57,4 +26,4 @@
     </div>
     {% endfor %}
 </div>
-</body>
+{% endblock %}
