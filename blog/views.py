@@ -9,7 +9,7 @@ from .models import Blog
 
 class BlogDetailView(DetailView):
     model = Blog
-    template_name = 'blog/content_details.html'
+    template_name = 'blogs/content_details.html'
     context_object_name = 'content'
 
     def get_object(self, queryset=None):
@@ -29,7 +29,7 @@ class BlogDetailView(DetailView):
 
 class BlogListViews(ListView):
     model = Blog
-    template_name = 'blog/content_list.html'
+    template_name = 'blogs/content_list.html'
     context_object_name = 'contents'
 
     def get_queryset(self):
@@ -39,17 +39,17 @@ class BlogListViews(ListView):
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    template_name = 'blog/create_content.html'
+    template_name = 'blogs/content_form.html'
     fields = ['title', 'content', 'preview']
 
     def get_success_url(self):
-        return reverse_lazy('название_вашего_url_шаблона', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blogs:content_details', kwargs={'pk': self.object.pk})
 
 
 class BlogCreateView(CreateView):
     model = Blog
-    template_name = 'blog/create_content.html'
+    template_name = 'blogs/content_form.html'
     fields = ['title', 'content', 'preview']
 
     def get_success_url(self):
-        return reverse_lazy('название_вашего_url_шаблона', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blogs:content_details', kwargs={'pk': self.object.pk})
