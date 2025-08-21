@@ -1,0 +1,15 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Информация о продуктах{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Информация о продукте</h1>
+    <p> Фотография: <img src='{{ product_image }}' alt="{{ product_name }}"></p>
+    <p>{{ product_name }}</p>
+    <p>{{ product_category }}</p>
+    <p>{{ product_price }}</p>
+    <p>{{ product_description }}</p>
+</div>
+{% endblock %}
+
