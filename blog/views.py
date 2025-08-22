@@ -27,7 +27,7 @@ class BlogDetailView(DetailView):
         return obj
 
 
-class BlogListViews(ListView):
+class BlogListView(ListView):
     model = Blog
     template_name = 'blogs/content_list.html'
     context_object_name = 'contents'
@@ -41,9 +41,7 @@ class BlogUpdateView(UpdateView):
     model = Blog
     template_name = 'blogs/content_form.html'
     fields = ['title', 'content', 'preview']
-
-    def get_success_url(self):
-        return reverse_lazy('blogs:content_details', kwargs={'pk': self.object.pk})
+    success_url = reverse_lazy('blog:content_list')
 
 
 class BlogCreateView(CreateView):
@@ -52,4 +50,4 @@ class BlogCreateView(CreateView):
     fields = ['title', 'content', 'preview']
 
     def get_success_url(self):
-        return reverse_lazy('blogs:content_details', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blog:content_details', kwargs={'pk': self.object.pk})

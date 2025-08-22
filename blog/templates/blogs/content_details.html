@@ -6,10 +6,11 @@
 {% include 'blogs/header.html' %}
 <div class="container mt-5">
 <h2>{{ content.title }}</h2>
-<img src="{{ content.preview.url }}" alt="{{content.title}}">
-<p>Дата публикации: {{ content.create_at|date:"d M Y" }}</p>
+<img src="{{ content.preview }}" alt="{{content.title}}">
+    <h4>{{ content.content }}</h4>
+<p>Дата публикации: {{ content.created_at|date:"d M Y" }}</p>
 <p>Количество просмотров: {{ content.views_count }}</p>
-<a href="#" class="btn btn-secondary">Редактировать</a>
-<a href="#" class="btn btn-primary">Вернуться к списку</a>
+    <a href="/blogs/edit/{{content.id}}/" class="btn btn-secondary">Редактировать</a>
+<a href="{% url 'blog:content_list' %}" class="btn btn-primary">Вернуться к списку</a>
 </div>
 {% endblock %}

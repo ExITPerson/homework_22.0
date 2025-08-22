@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'blogs/base.html' %}
 
-</body>
-</html>
+{% block title %}Форма блога{% endblock %}
+
+{% block content %}
+{% include 'blogs/header.html' %}
+<h2>Форма блога</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'blog:content_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
