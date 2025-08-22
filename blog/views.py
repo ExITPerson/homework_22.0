@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .models import Blog
@@ -41,7 +41,9 @@ class BlogUpdateView(UpdateView):
     model = Blog
     template_name = 'blogs/content_form.html'
     fields = ['title', 'content', 'preview']
-    success_url = reverse_lazy('blog:content_list')
+
+    def get_success_url(self):
+        return reverse('blog:content_details', kwargs={'pk': self.object.pk})
 
 
 class BlogCreateView(CreateView):
