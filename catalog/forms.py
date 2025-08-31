@@ -1,13 +1,30 @@
 from django import forms
 from django.core.exceptions import ValidationError
-
 from catalog.models import Product
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         models = Product
-        fields = ['name', 'description', 'image', 'category', 'price',]
+        fields = ['name', 'description', 'image', 'category', 'price', ]
+
+    def __init__(self, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Введите название продукта'
+        })
+
+        self.fields['description'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Введите описание продукта'
+        })
+
+        self.fields['price'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Введите цену продукта'
+        })
 
     def clean(self):
         cleaned_data = super().clean()
