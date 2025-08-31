@@ -12,13 +12,16 @@
             <div class="col-8 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center"><font face="impact">{{product.name}}</font></h4>
+                        <h2 class="text-center"><font face="impact">
+                            <a href="{% url 'catalog:product_details' product.pk %}"
+                               style="color: black; text-decoration: none">{{product.name}}</a></font></h2>
                     </div>
                     <div class="card-body">
                         <h2 class="card-title text-center fw-bold">{{product.price}} руб.</h2>
                         <p class="card-text text-center">{{product.description|truncatechars:100}}</p>
                         <a href="#" class="btn btn-outline-primary w-100"><font face="impact">Купить</font></a>
-                        <a href="/product_details/{{product.id}}/" class="btn btn-outline-secondary w-100 mt-2"><font face="impact">Описание</font></a>
+                        <a href="{% url 'catalog:product_details' product.pk %}"
+                           class="btn btn-outline-secondary w-100 mt-2"><font face="impact">Описание</font></a>
                     </div>
                 </div>
             </div>

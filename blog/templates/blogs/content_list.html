@@ -1,0 +1,15 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}Список записей{% endblock %}
+
+{% block content %}
+{% include 'blogs/header.html' %}
+<h2>Список записей</h2>
+<ul class="list-group">
+    {% for content in contents %}
+        <li class="list-group-item">
+            <a href="/blogs/{{content.id}}/">{{ content.title }}</a> - {{ content.created_at|date:"d M Y" }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

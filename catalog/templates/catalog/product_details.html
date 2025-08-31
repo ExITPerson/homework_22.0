@@ -5,11 +5,11 @@
 {% block content %}
 <div class="container mt-5">
     <h1>Информация о продукте</h1>
-    <p> Фотография: <img src='{{ product_image }}' alt="{{ product_name }}"></p>
-    <p>{{ product_name }}</p>
-    <p>{{ product_category }}</p>
-    <p>{{ product_price }}</p>
-    <p>{{ product_description }}</p>
+    <p> Фотография: <img src='{{ product.image }}' alt="{{ product.name }}"></p>
+    <p>{{ product.name }}</p>
+    <p>{{ product.category }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.description }}</p>
 </div>
 {% endblock %}
 
