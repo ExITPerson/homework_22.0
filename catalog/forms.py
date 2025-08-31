@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from catalog.models import Product
 
@@ -21,3 +22,9 @@ class ProductForm(forms.ModelForm):
         for word in forbidden_words:
             if word.lower() in name.lower() or word.lower() in description.lower():
                 self.add_error('name', f'Слово {word} не может содержаться в имени или описании')
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+
+        if price < 0:
+            raise ValidationError('Цена не может быть отрицательной')
