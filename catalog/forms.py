@@ -5,7 +5,7 @@ from catalog.models import Product
 
 class ProductForm(forms.ModelForm):
     class Meta:
-        models = Product
+        model = Product
         fields = ['name', 'description', 'image', 'category', 'price', ]
 
     def __init__(self, *args, **kwargs):

@@ -10,6 +10,7 @@
     <p>{{ product.category }}</p>
     <p>{{ product.price }}</p>
     <p>{{ product.description }}</p>
+    <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-secondary">Редактировать</a>
 </div>
 {% endblock %}
 
