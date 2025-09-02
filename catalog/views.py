@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView
 
+from .forms import ProductForm
 from .models import Product
 
 
@@ -15,6 +17,20 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/product_details.html'
     context_object_name = 'product'
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
+    success_url = reverse_lazy('catalog:home')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
+    success_url = reverse_lazy('catalog:home')
 
 
 class ContactsTemplateView(TemplateView):
