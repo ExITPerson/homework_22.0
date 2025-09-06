@@ -22,6 +22,7 @@ class Product(models.Model):
     price = models.IntegerField(help_text='Введите цену')
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    publication_status = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -30,3 +31,6 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ['name']
+        permissions = [
+            ('can_unpublish_product', 'Can unpublish product'),
+        ]
