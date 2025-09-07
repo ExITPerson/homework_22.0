@@ -4,6 +4,15 @@
 
 {% block content %}
 {% include 'catalog/header.html' %}
+{% if user.is_authenticated %}
+<div class="row mt-2">
+    <div class="col-4"></div>
+    <div class="col-4" style="text-align: center">
+        <a href="{% url 'catalog:create_product' %}" class="btn btn-secondary">Добавить продукт</a>
+    </div>
+    <div class="col-4"></div>
+</div>
+{% endif %}
 <div class="row mt-2">
     {% for product in products %}
     <div class="col-4">
