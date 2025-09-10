@@ -1,6 +1,5 @@
 import os
 
-from django.conf.global_settings import AUTH_USER_MODEL, LOGIN_URL, LOGOUT_REDIRECT_URL
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -114,3 +113,13 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
 
 LOGIN_URL = '/'
+
+CACHE_ENABLED = True
+
+if CACHE_ENABLED:
+    CACHES = {
+        'default':{
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': 'redis://localhost:6379'
+        }
+    }
