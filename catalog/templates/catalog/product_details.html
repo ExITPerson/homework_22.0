@@ -10,7 +10,12 @@
     <p>{{ product.category }}</p>
     <p>{{ product.price }}</p>
     <p>{{ product.description }}</p>
-    <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-secondary">Редактировать</a>
+    {% if product.author == user %}
+        <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-secondary">Редактировать</a>
+    {% endif %}
+    {% if perms.user.delete_product or product.author == user%}
+        <a href="{% url 'catalog:delete_product' product.pk %}" class="btn btn-danger">Удалить</a>
+    {% endif %}
 </div>
 {% endblock %}
 
