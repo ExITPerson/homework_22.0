@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Информация о продуктах{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Информация о продукте</h1>
+    <p> Фотография: <img src='{{ product.image }}' alt="{{ product.name }}"></p>
+    <p>{{ product.name }}</p>
+    <p>{{ product.category }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    {% if product.author == user %}
+        <a href="{% url 'catalog:update_product' product.pk %}" class="btn btn-secondary">Редактировать</a>
+    {% endif %}
+    {% if perms.user.delete_product or product.author == user%}
+        <a href="{% url 'catalog:delete_product' product.pk %}" class="btn btn-danger">Удалить</a>
+    {% endif %}
+</div>
+{% endblock %}
+
