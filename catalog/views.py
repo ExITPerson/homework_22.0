@@ -1,11 +1,15 @@
+from audioop import reverse
+from lib2to3.fixes.fix_input import context
+
 from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, View, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ProductForm
-from .models import Product
+from .models import Product, Category
+from .services import ProductsServices
 
 
 class ProductUnpublishView(LoginRequiredMixin, View):
@@ -40,6 +44,14 @@ class ProductListView(ListView):
     model = Product
     template_name = 'catalog/home.html'
     context_object_name = 'products'
+
+    def get_queryset(self):
+        return ProductsServices.get_list_products_from_cache()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()  # передаем все категории
+        return context
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
@@ -90,3 +102,15 @@ class ContactsTemplateView(LoginRequiredMixin, TemplateView):
 
 class HomeTemplateView(TemplateView):
     template_name = 'catalog/home.html'
+
+
+class ProductsByCategoryView(View):
+
+    def get(self, request, category_id):
+        category = get_object_or_404(Category, id=category_id)
+        products = ProductsServices.get_products_by_category(category_id)
+        context = {
+            'category': category,
+            'products': products
+        }
+        return render(request, 'catalog/products_list.html', context)

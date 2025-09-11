@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import ForeignKey
+
 from config import settings
 
 
@@ -10,8 +12,8 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = ''
-        verbose_name_plural = ''
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
         ordering = ['name']
 
 

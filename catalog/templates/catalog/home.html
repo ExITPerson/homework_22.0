@@ -12,6 +12,22 @@
     </div>
     <div class="col-4"></div>
 </div>
+<div class="row mt-2">
+    <div class="col-4"></div>
+    <div class="col4" style="text-align: center">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Категории продуктов
+            </button>
+            <ul class="dropdown-menu">
+                {% for category in categories %}
+                    <li><a class="dropdown-item" href="{% url 'catalog:products_by_category' category.id %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endif %}
 <div class="row mt-2">
     {% for product in products %}
